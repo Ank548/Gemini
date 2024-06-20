@@ -1,0 +1,159 @@
+.main {
+  flex: 1;
+  padding: 20px;
+  padding-bottom: 5px;
+  max-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+}
+
+.gemini {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 1.3rem;
+  min-width: 100%;
+}
+
+.gemini img {
+  width: 35px;
+  border-radius: 50%;
+}
+
+.mainHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0 20px 0;
+  max-height: calc(100vh - 176.6px);
+}
+
+.mainHeader > div {
+  min-width: 900px;
+  max-width: 900px;
+}
+
+.mainHeader .QNA {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), 4px 4px 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+.mainHeader .QNA::-webkit-scrollbar {
+  width: 0;
+}
+
+.mainHeader > div .user {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.mainHeader > div .user p {
+  padding: 5px 15px 30px 40px;
+  line-height: 26px;
+}
+
+.mainHeader > div .user img {
+  width: 30px;
+  border-radius: 50%;
+}
+
+.mainHeader > div .geminiAi {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.mainHeader > div .geminiAi p {
+  padding: 5px 40px 30px 15px;
+  line-height: 26px;
+}
+
+.mainHeader > div .geminiAi img {
+  width: 40px;
+}
+
+.intro {
+  font-size: 3.5rem;
+  font-weight: 500;
+  margin-bottom: 70px;
+}
+
+.intro p:first-child {
+  background: -webkit-linear-gradient(321deg, #4b90ff 1%, #ff5546 99%);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.intro p:last-child {
+  color: rgb(216, 216, 216);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.cards > div {
+  background-color: #f0f4f9;
+  border-radius: 20px;
+  aspect-ratio: 1 / 1;
+  padding: 18px 15px;
+  position: relative;
+}
+
+.cards > div .icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgb(234, 234, 234);
+  border-radius: 50%;
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards > div .icon img {
+  width: 30px;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: center;
+}
+
+.searchBar > div {
+  display: flex;
+  padding: 0 12px;
+  background-color: #f0f4f9;
+  border-radius: 25px;
+  align-items: center;
+  min-width: 900px;
+}
+
+.searchBar > div > input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 15px;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+.searchBar img {
+  margin: 0 3px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 10px;
+  text-align: center;
+  min-width: 900px;
+  font-size: 0.8rem;
+}

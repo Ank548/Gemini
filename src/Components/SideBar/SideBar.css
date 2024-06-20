@@ -1,0 +1,49 @@
+.sidebar {
+  background-color: #f0f4f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px 16px;
+}
+
+.sidebar .menuIcon {
+  cursor: pointer;
+}
+
+.sidebar img {
+  width: 20px;
+}
+
+.sidebar .iconText {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.sidebar .iconText img {
+  margin-right: 5px;
+}
+
+.sidebar .newChat {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  background-color: #e6eaf1;
+  border-radius: 25px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.sidebar .newChat img {
+  margin-right: 10px;
+}
+
+.recent .recentHeading {
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+
+.recent .iconText {
+  margin: 5px 0;
+}

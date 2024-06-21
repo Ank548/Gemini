@@ -1,19 +1,28 @@
-import { useState } from 'react'
-import React from 'react';
-import "./Main.css"
-import { assets } from '../../assets/assets'
+import React, { useState } from 'react';
+import "./Main.css";
+import { assets } from '../../assets/assets';
 import run from '../../Gemini/Gemini';
+import { useDispatch } from 'react-redux';
+import { addPrompts } from '../../Store/PromptSlice';
+
 
 function Main() {
     const [prompt, setPrompt] = useState("");
     const [recentPrompt, setRecentPrompt] = useState("")
     const [geminiResponse, setGeminiResponse] = useState("")
+    const dispatch = useDispatch()
 
     const geminiCall = async () => {
-        const response = await run(prompt);
-        console.log(response)
         setRecentPrompt(prompt)
+        dispatch(addPrompts(prompt))
+        const response = await run(prompt);
         setGeminiResponse(response)
+    }
+
+    const geminiCallOnEnter = (e) => {
+        if (e.key === "Enter") {
+            geminiCall()
+        }
     }
 
 
@@ -88,8 +97,10 @@ function Main() {
                         placeholder='Enter a prompt here'
                         onChange={(e) => setPrompt(e.target.value)}
                         value={prompt}
+                        onKeyDown={geminiCallOnEnter}
                     />
                     <img src={assets.gallery_icon} alt="" />
+
                     <img src={assets.mic_icon} alt="" />
                     <img
                         src={assets.send_icon}
@@ -104,4 +115,6 @@ function Main() {
 }
 
 export default Main
+
+
 

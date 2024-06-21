@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
+import SideBar from './Components/Sidebar/Sidebar'
 import Main from './Components/Main/Main'
-import Sidebar from './Components/Sidebar/Sidebar'
-import run from './Gemini/Gemini'
 
 function App() {
 
@@ -14,7 +13,7 @@ function App() {
 
   return (
     <>
-      <Sidebar />
+      <SideBar />
       <Main />
     </>
   )

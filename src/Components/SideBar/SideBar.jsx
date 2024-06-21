@@ -1,8 +1,12 @@
 import React from 'react'
 import "./Sidebar.css"
 import { assets } from '../../assets/assets'
+import { useSelector } from 'react-redux'
 
 function Sidebar() {
+
+    const { prompts } = useSelector((state) => state.prompts);
+
     return (
         <div className='sidebar'>
             <div className='SidebarTop'>
@@ -16,14 +20,14 @@ function Sidebar() {
                 <div className='recent'>
                     <div className='recentHeading'>Recent</div>
                     <div>
-                        <div className='iconText'>
-                            <img src={assets.message_icon} alt="" />
-                            <p>What is react?</p>
-                        </div>
-                        <div className='iconText'>
-                            <img src={assets.message_icon} alt="" />
-                            <p>What is react?</p>
-                        </div>
+
+                        {prompts.map((prompt) => (
+                            <div className='iconText' key={prompt}>
+                                <img src={assets.message_icon} alt="" />
+                                <p>{prompt}</p>
+                            </div>
+                        ))}
+
                     </div>
                 </div>
             </div>

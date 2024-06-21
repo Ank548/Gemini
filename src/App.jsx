@@ -1,19 +1,10 @@
-import { useEffect } from 'react'
-import SideBar from './Components/Sidebar/Sidebar'
-import Main from './Components/Main/Main'
+import React from 'react'
+import { Main, Sidebar } from './Components'
 
 function App() {
-
-  // useEffect(() => {
-  //   ; (async () => {
-  //     const runi = await run("what is react?")
-  //     console.log((runi))
-  //   })();
-  // }, [])
-
   return (
     <>
-      <SideBar />
+      <Sidebar />
       <Main />
     </>
   )

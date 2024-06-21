@@ -2,10 +2,12 @@ import React from 'react'
 import "./Sidebar.css"
 import { assets } from '../../assets/assets'
 import { useSelector } from 'react-redux'
+import geminiCall from '../../Custom Hooks/GeminiCall';
 
 function Sidebar() {
 
     const { prompts } = useSelector((state) => state.prompts);
+    const gemini = geminiCall();
 
     return (
         <div className='sidebar'>
@@ -22,9 +24,9 @@ function Sidebar() {
                     <div>
 
                         {prompts.map((prompt) => (
-                            <div className='iconText' key={prompt}>
+                            <div className='iconText' key={prompt} onClick={() => gemini(prompt)}>
                                 <img src={assets.message_icon} alt="" />
-                                <p>{prompt}</p>
+                                <p>{prompt.slice(0, 15) + "..."}</p>
                             </div>
                         ))}
 

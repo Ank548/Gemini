@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    prompts: []
+    prompt: "",
+    prompts: [],
+    recentPrompt: "",
+    geminiResponse: ""
 };
 
 const promptSlice = createSlice({
@@ -9,11 +12,23 @@ const promptSlice = createSlice({
     initialState,
     reducers: {
         addPrompts(state, action) {
-            state.prompts.push(action.payload)
+            if (!state.prompts.includes(action.payload)) {
+                state.prompts.push(action.payload)
+            }
+        },
+        newPrompt(state, action) {
+            state.prompt = action.payload
+        },
+        setRecentPrompt(state, action) {
+            state.recentPrompt = action.payload
+        },
+        setGeminiResponse(state, action) {
+            state.geminiResponse = action.payload
         }
+
     }
 })
 
-export const { addPrompts } = promptSlice.actions;
+export const { addPrompts, newPrompt, setRecentPrompt, setGeminiResponse } = promptSlice.actions;
 
 export default promptSlice.reducer

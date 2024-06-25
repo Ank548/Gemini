@@ -12,7 +12,7 @@ const promptSlice = createSlice({
     initialState,
     reducers: {
         addPrompts(state, action) {
-            if (!state.prompts.includes(action.payload)) {
+            if (!state.prompts.includes(action.payload) && state.recentPrompt !== "") {
                 state.prompts.push(action.payload)
             }
         },

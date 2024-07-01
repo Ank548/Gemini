@@ -7,7 +7,7 @@ import { setRecentPrompt } from '../../Store/PromptSlice';
 
 function Sidebar() {
 
-    const [hamburger, setHamburger] = useState(true);
+    const [hamburger, setHamburger] = useState(false);
     const { prompts } = useSelector((state) => state.prompts);
     const dispatch = useDispatch();
     const gemini = geminiCall();

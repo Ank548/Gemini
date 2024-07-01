@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { assets } from '../assets/assets'
 import { useSelector } from 'react-redux'
 import MarkdownRenderer from './MarkdownRenderer'
@@ -7,9 +7,11 @@ import geminiCall from '../Custom Hooks/GeminiCall'
 function QNA() {
     const { recentPrompt, geminiResponse } = useSelector((state) => state.prompts);
     const [speaking, setSpeaking] = useState(false);
+    const [completedResponse, setCompletedResponse] = useState(false);
     const [response, setResponse] = useState("")
-    const GeminiRef = useRef("");
-    const imgRef = useRef("");
+    const GeminiRef = useRef(null);
+    const imgRef = useRef(null);
+    const QNARef = useRef(null)
     const gemini = geminiCall();
 
     const speak = () => {
@@ -42,12 +44,33 @@ function QNA() {
 
     useEffect(() => {
         setResponse("")
+        setCompletedResponse(false)
+
+        // const codeSplit = geminiResponse.split(/```/)
+        // let formattedResponse = ""
+
+        // for (let i = 0; i < codeSplit.length; i++) {
+        //     if (i % 2 !== 0) {
+        //         const firstSpaceIndex = codeSplit[i].indexOf("\n");
+        //         const languageName = firstSpaceIndex === -1 ? codeSplit[i] : codeSplit[i].slice(0, firstSpaceIndex).trim();
+        //         const code = codeSplit[i].slice(firstSpaceIndex + 1).trim();
+        //         formattedResponse += `<div class="New">${code}</div>`
+        //     }
+        //     else {
+        //         formattedResponse += codeSplit[i].trim()
+        //     }
+        // }
+
         const responseArr = geminiResponse.split(" ");
         let timeoutIds = [];
 
         for (let i = 0; i < responseArr.length; i++) {
             const timeoutId = setTimeout(() => {
                 setResponse((prev) => prev + responseArr[i] + " ");
+                if (i === responseArr.length - 1 && i !== 0) {
+                    setCompletedResponse(true);
+                }
+                QNARef.current.scrollTop = QNARef.current.scrollHeight;
             }, i * 100);
             timeoutIds.push(timeoutId);
         }
@@ -58,34 +81,38 @@ function QNA() {
     }, [geminiResponse]);
 
     return (
-        <div className="QNA">
+        <div className="QNA" ref={QNARef}>
             <div className="user">
-                <p>{recentPrompt}</p>
-                <img src={assets.user_icon} alt="" />
+                <div>
+                    <p>{recentPrompt}</p>
+                    <img src={assets.user_icon} alt="" />
+                </div>
             </div>
             <div className="geminiAi">
                 <img src={assets.gemini_icon} alt="" />
-                <p ref={GeminiRef}>
-                    <MarkdownRenderer text={response} />
-                </p>
-                <div className='responseFeatures'>
-                    <img
-                        src={speaking ? assets.stop_icon : assets.speaker_icon}
-                        alt=""
-                        onClick={speak}
-                    />
-                    <img
-                        src={assets.copy_icon}
-                        alt=""
-                        onClick={copy}
-                        ref={imgRef}
-                    />
-                    <img
-                        src={assets.refresh_icon}
-                        alt=""
-                        onClick={refresh}
-                    />
+                <div ref={GeminiRef} className='geminiResponse'>
+                    <MarkdownRenderer>{response}</MarkdownRenderer>
                 </div>
+                {completedResponse &&
+                    <div className='responseFeatures'>
+                        <img
+                            src={speaking ? assets.stop_icon : assets.speaker_icon}
+                            alt=""
+                            onClick={speak}
+                        />
+                        <img
+                            src={assets.copy_icon}
+                            alt=""
+                            onClick={copy}
+                            ref={imgRef}
+                        />
+                        <img
+                            src={assets.refresh_icon}
+                            alt=""
+                            onClick={refresh}
+                        />
+                    </div>
+                }
             </div>
         </div>
     )

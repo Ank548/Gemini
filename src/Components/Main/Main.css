@@ -24,9 +24,9 @@
 .mainHeader {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin: 10px 0 20px 0;
-  max-height: calc(100vh - 176.6px);
+  align-items: flex-start;
+  margin: 20px 0 20px 0;
+  max-height: calc(100vh - 186.6px);
 }
 
 .mainHeader > div {
@@ -39,7 +39,6 @@
   padding: 20px;
   max-height: 100%;
   overflow-y: scroll;
-  position: relative;
 }
 
 .mainHeader .QNA::-webkit-scrollbar {
@@ -49,16 +48,25 @@
 .mainHeader > div .user {
   display: flex;
   justify-content: flex-end;
+}
+
+.mainHeader > div .user > div {
+  display: inline-flex;
+  justify-content: flex-end;
   align-items: flex-start;
+  background-color: #e6eaf1;
+  margin-bottom: 25px;
+  border-radius: 20px;
 }
 
 .mainHeader > div .user p {
-  padding: 5px 15px 30px 40px;
+  padding: 7px 15px 7px 40px;
   line-height: 26px;
 }
 
 .mainHeader > div .user img {
   width: 30px;
+  margin: 5px 10px 5px 0;
   border-radius: 50%;
 }
 
@@ -66,9 +74,10 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  position: relative;
 }
 
-.mainHeader > div .geminiAi p {
+.mainHeader > div .geminiAi .geminiResponse {
   padding: 5px 40px 30px 15px;
   line-height: 26px;
 }
@@ -79,7 +88,7 @@
 
 .mainHeader .responseFeatures {
   position: absolute;
-  bottom: 0;
+  bottom: -10px;
   right: 0;
 }
 
@@ -178,3 +187,25 @@
   min-width: 900px;
   font-size: 0.8rem;
 }
+
+/* .mainHeader
+  > div
+  .geminiAi
+  .geminiResponse
+  pre:has([class^="language-"])::before {
+  content: "javascript";
+  display: block;
+  background-color: rgb(218, 222, 224);
+} */
+
+.mainHeader > div .geminiAi .geminiResponse pre:has([class^="language-"]) {
+  background-color: rgb(236, 241, 243);
+  padding: 12px;
+  border-radius: 12px;
+}
+
+/* .mainHeader > div .geminiAi .geminiResponse .code {
+  background-color: rgb(236, 241, 243);
+  padding: 12px;
+  border-radius: 12px;
+} */

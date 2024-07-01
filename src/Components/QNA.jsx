@@ -91,7 +91,7 @@ function QNA() {
             <div className="geminiAi">
                 <img src={assets.gemini_icon} alt="" />
                 <div ref={GeminiRef} className='geminiResponse'>
-                    <MarkdownRenderer>{response}</MarkdownRenderer>
+                    <MarkdownRenderer text={response} />
                 </div>
                 {completedResponse &&
                     <div className='responseFeatures'>

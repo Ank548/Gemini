@@ -188,24 +188,8 @@
   font-size: 0.8rem;
 }
 
-/* .mainHeader
-  > div
-  .geminiAi
-  .geminiResponse
-  pre:has([class^="language-"])::before {
-  content: "javascript";
-  display: block;
-  background-color: rgb(218, 222, 224);
-} */
-
 .mainHeader > div .geminiAi .geminiResponse pre:has([class^="language-"]) {
   background-color: rgb(236, 241, 243);
   padding: 12px;
   border-radius: 12px;
 }
-
-/* .mainHeader > div .geminiAi .geminiResponse .code {
-  background-color: rgb(236, 241, 243);
-  padding: 12px;
-  border-radius: 12px;
-} */

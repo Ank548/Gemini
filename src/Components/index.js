@@ -1,5 +1,5 @@
 import Main from "./Main/Main";
-import Sidebar from "./Sidebar/Sidebar";
+import Sidebar from "./Sidebar/SideBar";
 import Card from "./Card";
 import Footer from "./Footer";
 import Mainheader from "./Mainheader";

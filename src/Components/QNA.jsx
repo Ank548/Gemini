@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { assets } from '../assets/assets'
 import { useSelector } from 'react-redux'
-import MarkdownRenderer from './MarkdownRenderer'
+import Markdown from 'marked-react'
 import geminiCall from '../Custom Hooks/GeminiCall'
+import Copy from '../Custom Hooks/copy'
 
 function QNA() {
     const { recentPrompt, geminiResponse } = useSelector((state) => state.prompts);
     const [speaking, setSpeaking] = useState(false);
     const [completedResponse, setCompletedResponse] = useState(false);
     const [response, setResponse] = useState("")
+    const [displayResponse, setDisplayResponse] = useState("")
     const GeminiRef = useRef(null);
-    const imgRef = useRef(null);
     const QNARef = useRef(null)
     const gemini = geminiCall();
 
@@ -29,45 +30,58 @@ function QNA() {
         }
     }
 
-    const copy = () => {
-        navigator.clipboard.writeText(GeminiRef.current.innerText)
-        imgRef.current.src = assets.check_icon
-        setTimeout(() => {
-            imgRef.current.src = assets.copy_icon
-        }, 2000);
-    }
-
     const refresh = () => {
         setResponse("")
+        setDisplayResponse("")
         gemini(recentPrompt);
     }
 
     useEffect(() => {
         setResponse("")
+        setDisplayResponse("")
         setCompletedResponse(false)
 
-        // const codeSplit = geminiResponse.split(/```/)
-        // let formattedResponse = ""
+        const codeSplit = geminiResponse.split(/```/)
+        let formattedResponse = []
 
-        // for (let i = 0; i < codeSplit.length; i++) {
-        //     if (i % 2 !== 0) {
-        //         const firstSpaceIndex = codeSplit[i].indexOf("\n");
-        //         const languageName = firstSpaceIndex === -1 ? codeSplit[i] : codeSplit[i].slice(0, firstSpaceIndex).trim();
-        //         const code = codeSplit[i].slice(firstSpaceIndex + 1).trim();
-        //         formattedResponse += `<div class="New">${code}</div>`
-        //     }
-        //     else {
-        //         formattedResponse += codeSplit[i].trim()
-        //     }
-        // }
+        for (let i = 0; i < codeSplit.length; i++) {
+            if (i % 2 !== 0) {
+                const firstSpaceIndex = codeSplit[i].indexOf("\n");
+                const languageName = firstSpaceIndex === -1 ? codeSplit[i] : codeSplit[i].slice(0, firstSpaceIndex).trim();
+                const code = codeSplit[i].slice(firstSpaceIndex + 1).trim();
+                formattedResponse.push(
+                    <div key={`code${i}`} className='codeCopy'>
+                        <div>
+                            <div>{languageName.charAt(0).toUpperCase() + languageName.slice(1).toLowerCase()}</div>
+                            <div onClick={(e) => Copy(code, e)} className='copyButton'>
+                                <img
+                                    src={assets.copy_icon}
+                                    alt=""
+                                    className='copy'
+                                />
+                                <span>Copy code</span>
+                            </div>
+                        </div>
+                        <pre>{code}</pre>
+                    </div>
+                )
+            }
+            else {
+                formattedResponse.push(<Markdown key={`text${i}`}>{codeSplit[i].trim()}</Markdown>)
+            }
+        }
 
         const responseArr = geminiResponse.split(" ");
         let timeoutIds = [];
 
         for (let i = 0; i < responseArr.length; i++) {
             const timeoutId = setTimeout(() => {
-                setResponse((prev) => prev + responseArr[i] + " ");
+                // if (GeminiRef.current.querySelectorAll('.geminiResponse pre:has([class^="language-"])').length !== 0) {
+                //     GeminiRef.current.querySelectorAll('.geminiResponse pre:has([class^="language-"])')[0].innerHTML = 'jdjsadnandnwandjnands'
+                // }
+                setDisplayResponse((prev) => `${prev}${responseArr[i]} `);
                 if (i === responseArr.length - 1 && i !== 0) {
+                    setResponse(formattedResponse)
                     setCompletedResponse(true);
                 }
                 QNARef.current.scrollTop = QNARef.current.scrollHeight;
@@ -90,9 +104,7 @@ function QNA() {
             </div>
             <div className="geminiAi">
                 <img src={assets.gemini_icon} alt="" />
-                <div ref={GeminiRef} className='geminiResponse'>
-                    <MarkdownRenderer text={response} />
-                </div>
+                <div ref={GeminiRef} className='geminiResponse'>{response ? response : <Markdown>{displayResponse}</Markdown>}</div>
                 {completedResponse &&
                     <div className='responseFeatures'>
                         <img
@@ -103,8 +115,8 @@ function QNA() {
                         <img
                             src={assets.copy_icon}
                             alt=""
-                            onClick={copy}
-                            ref={imgRef}
+                            onClick={(e) => Copy(GeminiRef.current.innerText, e)}
+                            className='copy'
                         />
                         <img
                             src={assets.refresh_icon}

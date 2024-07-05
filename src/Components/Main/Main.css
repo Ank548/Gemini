@@ -104,6 +104,37 @@
   background-color: rgb(234, 233, 233);
 }
 
+.mainHeader > div .geminiAi .geminiResponse .codeCopy {
+  margin: 10px 0;
+}
+
+.mainHeader > div .geminiAi .geminiResponse .codeCopy > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d0d3d7;
+  padding: 4px 20px;
+  border-radius: 12px 12px 0 0;
+  font-size: 0.8rem;
+}
+
+.mainHeader > div .geminiAi .geminiResponse .codeCopy > div .copyButton {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.mainHeader > div .geminiAi .geminiResponse .codeCopy > div .copyButton img {
+  width: 15px;
+  margin-right: 2px;
+}
+
+.mainHeader > div .geminiAi .geminiResponse .codeCopy pre {
+  background-color: #f0f4f9;
+  padding: 12px;
+  border-radius: 0 0 12px 12px;
+}
+
 .intro {
   font-size: 3.5rem;
   font-weight: 500;
@@ -186,10 +217,4 @@
   text-align: center;
   min-width: 900px;
   font-size: 0.8rem;
-}
-
-.mainHeader > div .geminiAi .geminiResponse pre:has([class^="language-"]) {
-  background-color: rgb(236, 241, 243);
-  padding: 12px;
-  border-radius: 12px;
 }

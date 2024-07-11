@@ -29,11 +29,11 @@ function Searchbar() {
                 <img src={assets.gallery_icon} alt="" />
 
                 <img src={assets.mic_icon} alt="" />
-                <img
+                {prompt && <img
                     src={assets.send_icon}
                     alt="Send Button"
                     onClick={() => gemini(prompt)}
-                />
+                />}
             </div>
         </div>
     )

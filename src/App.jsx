@@ -1,10 +1,10 @@
 import React from 'react'
-import { Main, Sidebar } from './Components'
+import { Main, SideBar } from './Components'
 
 function App() {
   return (
     <>
-      <Sidebar />
+      <SideBar />
       <Main />
     </>
   )

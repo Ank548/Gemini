@@ -1,5 +1,5 @@
 import Main from "./Main/Main";
-import Sidebar from "./Sidebar/SideBar";
+import SideBar from "./Sidebar/SideBar";
 import Card from "./Card";
 import Footer from "./Footer";
 import Mainheader from "./Mainheader";
@@ -11,12 +11,12 @@ import HoverPopup from "./HoverPopup";
 
 export {
     Main,
-    Sidebar,
+    SideBar,
     Card,
     Footer,
     Mainheader,
     Navbar,
     QNA,
     Searchbar,
-    HoverPopup
+    HoverPopup,
 }

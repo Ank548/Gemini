@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import "./Sidebar.css"
-import { assets } from '../../assets/assets'
-import { useDispatch, useSelector } from 'react-redux'
+import { assets } from '../../assets/assets';
+import { useDispatch, useSelector } from 'react-redux';
 import geminiCall from '../../Custom Hooks/GeminiCall';
 import { setRecentPrompt } from '../../Store/PromptSlice';
-import { HoverPopup } from '../index';
+import HoverPopup from '../HoverPopup';
 import Location from '../Location';
 
-function Sidebar() {
-
+function SideBar() {
     const [hamburger, setHamburger] = useState(false);
     const { prompts } = useSelector((state) => state.prompts);
     const dispatch = useDispatch();
@@ -71,4 +70,4 @@ function Sidebar() {
     )
 }
 
-export default Sidebar
+export default SideBar

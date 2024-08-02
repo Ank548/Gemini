@@ -7,6 +7,9 @@ import Navbar from "./Navbar";
 import QNA from "./QNA";
 import Searchbar from "./Searchbar";
 import HoverPopup from "./HoverPopup";
+import Profile from "./UserProfile/Profile";
+import Hamburger from "./Hamburger";
+import Location from './Location'
 
 
 export {
@@ -19,4 +22,7 @@ export {
     QNA,
     Searchbar,
     HoverPopup,
+    Profile,
+    Hamburger,
+    Location
 }

@@ -6,9 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-      // animation: {
-      //   slide: 'slide 0.2s linear 0s 1 forwards',
-      // },
+
     },
   },
   plugins: [],

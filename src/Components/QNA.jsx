@@ -37,10 +37,9 @@ function QNA() {
 
     useEffect(() => {
         setResponse("")
+        setcode(false)
         setCompletedResponse(false)
 
-        const QNA = QNARef.current;
-        // let code = false
         const responseArr = geminiResponse.split(" ");
         let timeoutIds = [];
 
@@ -54,36 +53,11 @@ function QNA() {
                 if (i > 1) {
                     if (responseArr[i - 2].includes("```") || responseArr[i - 1].includes("```") || responseArr[i].includes("```") || responseArr[i + 1].includes("```") || responseArr[i + 2].includes("```")) {
                         setcode((prev) => !prev)
-                        // QNA.scrollTop = QNA.scrollHeight
-                        // if (QNA.scrollHeight - QNA.scrollTop <= (QNA.offsetHeight + 150)) {
-                        //     QNA.scrollTop = QNA.scrollHeight;
-                        // }
                     }
                     else {
                         setcode(false)
-                        // setTimeout(() => {
-                        //     if (QNA.scrollHeight - QNA.scrollTop <= (QNA.offsetHeight + 52)) {
-                        //         QNA.scrollTop = QNA.scrollHeight;
-                        //     }
-                        // }, 500);
                     }
-                    // else if (responseArr[i].includes("```") && !responseArr[i + 2].includes("```\n")) {
-                    //     setcode(true)
-                    //     // QNA.scrollTop = QNA.scrollHeight
-                    // }
-
-                    //     if (!code) {
-                    //         if (QNA.scrollHeight - QNA.scrollTop < (QNA.offsetHeight + 27)) {
-                    //             QNA.scrollTop = QNA.scrollHeight;
-                    //         }
-                    //     } else {
-                    //         if (QNA.scrollHeight - QNA.scrollTop < (QNA.offsetHeight + 50)) {
-                    //             QNA.scrollTop = QNA.scrollHeight;
-                    //         }
-                    //     }
                 }
-
-
 
             }, i * 100);
             timeoutIds.push(timeoutId);
@@ -98,7 +72,6 @@ function QNA() {
         const QNA = QNARef.current;
         let timeoutId;
         if (!completedResponse) {
-            // console.log('use')
             if (!code) {
                 timeoutId = setInterval(() => {
                     if (QNA.scrollHeight - QNA.scrollTop <= (QNA.offsetHeight + 52)) {
@@ -107,7 +80,6 @@ function QNA() {
                 }, 300);
             }
             else {
-                // console.log('code')
                 if (QNA.scrollHeight - QNA.scrollTop <= (QNA.offsetHeight + 100)) {
                     QNA.scrollTop = QNA.scrollHeight;
                 }

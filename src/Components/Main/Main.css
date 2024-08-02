@@ -1,25 +1,30 @@
 .main {
   flex: 1;
-  padding: 20px;
-  padding-bottom: 5px;
   max-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto auto;
   font-family: "Outfit", sans-serif;
+  padding: 0 24px;
 }
 
 .gemini {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  padding-top: 18px;
   font-size: 1.3rem;
+  font-weight: 300;
   min-width: 100%;
 }
 
 .gemini img {
   width: 35px;
   border-radius: 50%;
+  cursor: pointer;
+}
+
+.gemini .showProfile {
+  position: relative;
 }
 
 .mainHeader {
@@ -27,16 +32,20 @@
   justify-content: center;
   align-items: flex-start;
   margin: 20px 0 20px 0;
+  overflow-y: scroll;
   max-height: calc(100vh - 203.2px);
 }
 
+.mainHeader::-webkit-scrollbar {
+  width: 0;
+}
+
 .mainHeader > div {
-  min-width: 900px;
-  max-width: 900px;
+  min-width: 840px;
+  max-width: 840px;
 }
 
 .mainHeader .QNA {
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), 4px 4px 10px rgba(0, 0, 0, 0.3);
   padding: 20px;
   max-height: 100%;
   overflow-y: scroll;
@@ -137,59 +146,81 @@
   background-color: #f0f4f9;
   padding: 12px;
   border-radius: 0 0 12px 12px;
+  white-space: pre-wrap; /* CSS3 */
+  white-space: -moz-pre-wrap; /* Firefox */
+  white-space: -pre-wrap; /* Opera <7 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* IE */
 }
 
 .intro {
-  font-size: 3.5rem;
+  font-size: 3.6rem;
   font-weight: 500;
-  margin-bottom: 70px;
+  line-height: 4rem;
+  margin-bottom: 80px;
+  margin-top: 28px;
+  letter-spacing: -1.5px;
 }
 
 .intro p:first-child {
-  background: -webkit-linear-gradient(321deg, #4b90ff 1%, #ff5546 99%);
+  background: -webkit-linear-gradient(
+    321deg,
+    rgba(24, 113, 234, 1) 2%,
+    rgba(223, 88, 103, 1) 30%
+  );
   -webkit-text-fill-color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
 }
 
 .intro p:last-child {
-  color: rgb(216, 216, 216);
+  color: #c5c6c5;
 }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+  gap: 10px;
+  font-size: 0.98rem;
+  letter-spacing: -0.5px;
+  font-family: "Noto Sans", sans-serif;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.cards::-webkit-scrollbar {
+  width: 0;
 }
 
 .cards > div {
   background-color: #f0f4f9;
-  border-radius: 20px;
+  border-radius: 12px;
   aspect-ratio: 1 / 1;
-  padding: 18px 15px;
+  padding: 15px;
   position: relative;
   cursor: pointer;
 }
 
 .cards > div .icon {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: rgb(234, 234, 234);
+  bottom: 15px;
+  right: 15px;
+  background-color: #fff;
   border-radius: 50%;
-  padding: 4px;
+  padding: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .cards > div .icon img {
-  width: 30px;
+  width: 25px;
 }
 
 .searchBar {
   display: flex;
   justify-content: center;
+  z-index: 9;
 }
 
 .searchBar > div {
@@ -198,7 +229,7 @@
   background-color: #f0f4f9;
   border-radius: 40px;
   align-items: center;
-  min-width: 900px;
+  min-width: 830px;
 }
 
 .searchBar > div > input {
@@ -206,19 +237,118 @@
   border: none;
   outline: none;
   padding: 20px;
+  padding-left: 15px;
   background-color: transparent;
-  font-size: 1rem;
+}
+
+.searchBar > div > input::placeholder {
+  letter-spacing: -0.5px;
+  color: #5f6368;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .searchBar img {
-  margin: 0 5px;
+  margin: 0 12px;
   width: 22px;
   cursor: pointer;
 }
 
 .footer {
-  margin-top: 10px;
+  margin: 10px 0;
   text-align: center;
-  min-width: 900px;
-  font-size: 0.8rem;
+  min-width: 830px;
+  font-weight: 300;
+  font-size: 0.79rem;
+  z-index: 9;
+}
+
+@media only screen and (max-width: 960px) {
+  .mainHeader > div {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .gemini .geminiHeader {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 999;
+  }
+
+  .gemini .geminiHeader > div:first-child {
+    position: absolute;
+    top: -5px;
+    left: -12px;
+  }
+
+  .gemini .geminiHeader > div:last-child {
+    margin-left: 42px;
+  }
+
+  .searchBar > div {
+    min-width: 100%;
+  }
+
+  .footer {
+    min-width: 100%;
+  }
+
+  @media only screen and (max-width: 680px) {
+    .intro {
+      font-size: 2.9rem;
+      line-height: 2.95rem;
+      margin-bottom: 40px;
+      margin-top: 38px;
+    }
+
+    .mainHeader .QNA {
+      padding: 20px 0;
+    }
+
+    @media only screen and (max-width: 460px) {
+      .main {
+        padding: 0 14px;
+      }
+
+      .gemini {
+        padding-left: 10px;
+      }
+
+      .gemini .showProfile {
+        position: static;
+      }
+
+      .intro {
+        font-size: 2.2rem;
+        line-height: 2.2rem;
+      }
+
+      .mainHeader > div .user p {
+        line-height: 22px;
+      }
+
+      .mainHeader > div .geminiAi .geminiResponse {
+        padding: 0 10px 30px 10px;
+        line-height: 22px;
+      }
+
+      .mainHeader > div .geminiAi img {
+        width: 35px;
+      }
+
+      .searchBar > div > input {
+        padding-right: 0;
+        width: 100%;
+      }
+
+      .searchBar img {
+        margin: 0 7px;
+      }
+
+      .footer {
+        font-size: 0.6rem;
+        line-height: 0.6rem;
+      }
+    }
+  }
 }

@@ -18,6 +18,11 @@ import stop_icon from './stop_icon.png'
 import refresh_icon from './refresh_icon.png'
 import copy_icon from './copy_icon.png'
 import check_icon from './check_icon.png'
+import wrong_icon from './wrong_icon.svg'
+import pencil_icon from './pencil_icon.png'
+import signup_icon from './signup_icon.png'
+import login_icon from './login_icon.png'
+import logout_icon from './logout_icon.png'
 
 export const assets = {
     history_icon,
@@ -39,5 +44,10 @@ export const assets = {
     stop_icon,
     refresh_icon,
     copy_icon,
-    check_icon
+    check_icon,
+    wrong_icon,
+    pencil_icon,
+    signup_icon,
+    login_icon,
+    logout_icon
 }

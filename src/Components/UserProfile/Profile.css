@@ -1,0 +1,164 @@
+.profile {
+  position: absolute;
+  background-color: #e6eaf1;
+  top: 60px;
+  right: 0;
+  z-index: 999;
+  border-radius: 25px;
+  padding: 12px;
+  color: #1f1f1f;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.profile .closeProfile {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  display: inline-block;
+  padding: 12px;
+}
+
+.profile .closeProfile:hover {
+  background-color: #dce2ea;
+  border-radius: 25px;
+}
+
+.profile .userEmail {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 10px 0;
+}
+
+.profile .profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.profile .profileContainer .profileImg {
+  position: relative;
+}
+
+.profile .profileContainer .profileImg > img {
+  width: 80px;
+}
+
+.profile .profileContainer .profileImg .profileImgEdit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 4px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.profile .profileContainer .profileImg .profileImgEdit:hover {
+  background-color: #d3d9e1;
+}
+
+.profile .profileContainer .profileImg .profileImgEdit img {
+  width: 15px;
+}
+
+.profile .profileContainer .greetUser {
+  font-weight: 400;
+  margin: 8px 0;
+}
+
+.profile .profileContainer .ManageAccount {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.profile .profileContainer .ManageAccount > span {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 8px 22px;
+  color: #0960d3;
+  cursor: pointer;
+}
+
+.profile .profileContainer .ManageAccount > span:hover {
+  background-color: #d3d9e1;
+}
+
+.profile .userMenuContainer > div {
+  width: 380px;
+  background-color: #f8fafd;
+  margin: 2px;
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.profile .userMenuContainer > div:first-child {
+  border-radius: 25px 25px 0 0;
+}
+
+.profile .userMenuContainer > div:last-child {
+  border-radius: 0 0 25px 25px;
+}
+
+.profile .userMenuContainer img {
+  width: 25px;
+  margin: 0 17px;
+}
+
+.profile .userMenuContainer h2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1.5px;
+}
+
+.profile .userMenuContainer .userAccount img {
+  width: 35px;
+  margin: 0 12px;
+}
+
+.profile .userMenuContainer .userAccount p {
+  font-size: 0.77rem;
+  font-weight: 400;
+}
+
+.profile .profileFooter {
+  margin: 20px 0 8px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.profile .profileFooter span {
+  cursor: pointer;
+}
+
+.profile .profileFooter span:nth-child(2) {
+  margin: 0 12px;
+  cursor: default;
+}
+
+@media only screen and (max-width: 460px) {
+  .profile {
+    min-width: 100vw;
+    max-width: 100vw;
+    min-height: 100vh;
+    max-height: 100vh;
+    top: 0px;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .profile .userMenuContainer > div {
+    width: 100%;
+  }
+
+  .profile .profileFooter {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+  }
+}
